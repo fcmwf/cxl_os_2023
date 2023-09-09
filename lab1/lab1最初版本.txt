@@ -1,0 +1,32 @@
+.globl start
+/* 定义Multiboot header */
+    magic_ITEM_NAME      =    0x1BADB002
+    flags_ITEM_NAME      =    0x0
+    checksum_ITEM_NAME   =    -(0x1BADB002 + 0x0)
+
+
+.section .text
+.code32
+    .long   magic_ITEM_NAME
+    .long   flags_ITEM_NAME
+    .long   checksum_ITEM_NAME
+
+start:
+    /* 此处是VGA输出"PB21051012"代码 */
+    movl  $0x2F422F50, 0xB8000
+    movl  $0x2F312F32, 0XB8004
+    movl  $0x2F352F30, 0xB8008
+    movl  $0x2F302F31, 0XB800C
+    movl  $0x2F322F31, 0XB8010  
+    /* 此处是串口输出"LXH"代码 */
+    movw $0x3F8, %dx
+    movb $0x4C, %al
+    outb %al, %dx
+    movb $0x58, %al
+    outb %al, %dx
+    movb $0x48, %al
+    outb %al, %dx
+    /* 停机 */
+    hlt
+
+end:

@@ -1,0 +1,19 @@
+#include "io.h"
+
+void init8259A(void){
+	//finished
+	//shield interrupt
+	outb(0x0021,0xFF);
+	outb(0x00A1,0XFF);
+	//master init
+	outb(0x0020,0x11);
+	outb(0x0021,0x20);
+	outb(0x0021,0x04);
+	outb(0x0021,0x3);
+	//slave init
+	outb(0x00A0,0X11);
+	outb(0x00A1,0x28);
+	outb(0x00A1,0X02);
+	outb(0x00A1,0X01);
+	return;
+}

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "tick.h": "c",
+        "wallclock.h": "c",
+        "vga.h": "c"
+    }
+}
